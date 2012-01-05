@@ -236,8 +236,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_html'] = a
   'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_html'],
   'default'			=> 'ce_slider_jquery_html',
   'inputType'		=> 'select',
-  'options'			=> $this->getTemplateGroup('ce_slider_jquery_html'),
-  'eval'			=> array('mandatory' => true)
+  'eval'			=> array('mandatory' => true),
+  'options_callback'=> array('tl_slider_jquery', 'getHTMLTemplate')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_js'] = array
@@ -245,8 +245,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_js'] = arr
   'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_js'],
   'default'			=> 'ce_slider_jquery_js',
   'inputType'		=> 'select',
-  'options'			=> $this->getTemplateGroup('ce_slider_jquery_js'),
-  'eval'			=> array('mandatory' => true)
+  'eval'			=> array('mandatory' => true),
+  'options_callback'=> array('tl_slider_jquery', 'getJSTemplate')
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_css'] = array
@@ -254,8 +254,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_css'] = ar
   'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_css'],
   'default'			=> 'ce_slider_jquery_css',
   'inputType'		=> 'select',
-  'options'			=> $this->getTemplateGroup('ce_slider_jquery_css'),
-  'eval'			=> array('mandatory' => true)
+  'eval'			=> array('mandatory' => true),
+  'options_callback'=> array('tl_slider_jquery', 'getCSSTemplate')
 );
 
 
@@ -330,7 +330,54 @@ class tl_slider_jquery extends Backend
 		}
 		
 		return $varValue;
-
+	}
+	
+	/**
+	 * Return all ce_slider_jquery_html templates as array
+	 * @param object
+	 * @return array
+	 */
+	public function getHTMLTemplate(DataContainer $dc)
+	{
+		$intPid = $dc->activeRecord->pid;
+	
+		if ($this->Input->get('act') == 'overrideAll')
+		{
+			$intPid = $this->Input->get('id');
+		}
+		return $this->getTemplateGroup('ce_slider_jquery_html', $intPid);
+	}
+	
+	/**
+	 * Return all ce_slider_jquery_js templates as array
+	 * @param object
+	 * @return array
+	 */
+	public function getJSTemplate(DataContainer $dc)
+	{
+		$intPid = $dc->activeRecord->pid;
+	
+		if ($this->Input->get('act') == 'overrideAll')
+		{
+			$intPid = $this->Input->get('id');
+		}
+		return $this->getTemplateGroup('ce_slider_jquery_js', $intPid);
+	}
+	
+	/**
+	 * Return all ce_slider_jquery_css templates as array
+	 * @param object
+	 * @return array
+	 */
+	public function getCSSTemplate(DataContainer $dc)
+	{
+		$intPid = $dc->activeRecord->pid;
+	
+		if ($this->Input->get('act') == 'overrideAll')
+		{
+			$intPid = $this->Input->get('id');
+		}
+		return $this->getTemplateGroup('ce_slider_jquery_css', $intPid);
 	}
 }
 ?>

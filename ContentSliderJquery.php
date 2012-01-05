@@ -86,9 +86,16 @@ class ContentSliderJquery extends ContentElement
 			$GLOBALS['TL_CSS']['ce_slider_jquery']			= 'plugins/ce_slider_jquery/ce_slider_jquery.css';
 			$GLOBALS['TL_MOOTOOLS']['ce_slider_jquery']		= '<script src="plugins/ce_slider_jquery/slides.jquery.js"></script>';
 
-			$this->$strTemplate 	= $this->ce_slider_jquery_template_html;
-			$this->Template			= new FrontendTemplate($this->strTemplate);
-
+			/*
+			 *	Create templates
+			 */
+			$this->$strTemplate 			= $this->ce_slider_jquery_template_html;
+			$this->Template					= new FrontendTemplate($this->strTemplate);
+			$this->TemplateCSS				= new FrontendTemplate($this->ce_slider_jquery_template_css);
+			$this->TemplateJS				= new FrontendTemplate($this->ce_slider_jquery_template_js);
+			
+			$arrce_slider_jquery_Size		= unserialize($this->ce_slider_jquery_size);
+			
 			$this->Template->Output			= 'start';
 			$this->Template->Width 			= $arrce_slider_jquery_Size[0];
 			$this->Template->Height 		= $arrce_slider_jquery_Size[1];
@@ -119,56 +126,49 @@ class ContentSliderJquery extends ContentElement
 			}
 			$arraySliderElem	= $sliderElements->fetchAllAssoc();
 
-			/* Create CSS template and add it to the <head> */
-			$objTplCSS = new FrontendTemplate();
-
-			$arrce_slider_jquery_Size		= unserialize($this->ce_slider_jquery_size);
+			/* Populate CSS template and add it to the <head> */
+			$this->TemplateCSS->Width 				= $arrce_slider_jquery_Size[0];
+    		$this->TemplateCSS->Height 				= $arrce_slider_jquery_Size[1];
+    		$this->TemplateCSS->Container		 	= $this->ce_slider_jquery_container;
+			$this->TemplateCSS->Generate_PrevNext 	= $this->ce_slider_jquery_generateNextPrev;
+			$this->TemplateCSS->NextButton_Class 	= $this->ce_slider_jquery_next;
+			$this->TemplateCSS->PrevButton_Class 	= $this->ce_slider_jquery_prev;
+			$this->TemplateCSS->Pagination_Class 	= $this->ce_slider_jquery_paginationClass;
+			$this->TemplateCSS->Current_Class 		= $this->ce_slider_jquery_currentClass;
 			
-			$objTplCSS->Width 				= $arrce_slider_jquery_Size[0];
-    		$objTplCSS->Height 				= $arrce_slider_jquery_Size[1];
-    		$objTplCSS->Container		 	= $this->ce_slider_jquery_container;
-			$objTplCSS->Generate_PrevNext 	= $this->ce_slider_jquery_generateNextPrev;
-			$objTplCSS->NextButton_Class 	= $this->ce_slider_jquery_next;
-			$objTplCSS->PrevButton_Class 	= $this->ce_slider_jquery_prev;
-			$objTplCSS->Pagination_Class 	= $this->ce_slider_jquery_paginationClass;
-			$objTplCSS->Current_Class 		= $this->ce_slider_jquery_currentClass;
-			
-   			$GLOBALS['TL_HEAD'][]			= $objTplCSS->parse();
+   			$GLOBALS['TL_HEAD'][]					= $this->TemplateCSS->parse();
 
 			/* Get current page name for "barrierefreien" Link */
 			global $objPage;
 			$PageLink = $objPage->alias . '.html';
 
-	  		/* Create dynamic javascript and add to <head> */
-			$objTplJS = new FrontendTemplate($this->ce_slider_jquery_template_js);
-
-			$objTplJS->Width 				= $arrce_slider_jquery_Size[0];
-			$objTplJS->Height 				= $arrce_slider_jquery_Size[1];
-			$objTplJS->Container			= $this->ce_slider_jquery_container;
-			$objTplJS->Play				 	= $this->ce_slider_jquery_play;
-			$objTplJS->Pause				= $this->ce_slider_jquery_pause;
-			$objTplJS->GenerateNextPrev		= $this->ce_slider_jquery_generateNextPrev;
-			$objTplJS->NextClass			= $this->ce_slider_jquery_next;
-			$objTplJS->PrevClass			= $this->ce_slider_jquery_prev;
-			$objTplJS->NextImg				= $this->ce_slider_jquery_nextImg;
-			$objTplJS->PrevImg				= $this->ce_slider_jquery_prevImg;
-			$objTplJS->Pagination			= $this->ce_slider_jquery_pagination;
-			$objTplJS->GeneratePagination	= $this->ce_slider_jquery_generatePagination;
-			$objTplJS->PaginationClass		= $this->ce_slider_jquery_paginationClass;
-			$objTplJS->CurrentClass			= $this->ce_slider_jquery_currentClass;
-			$objTplJS->Start				= $this->ce_slider_jquery_start;
-			$objTplJS->SlideSpeed			= $this->ce_slider_jquery_slideSpeed;
-			$objTplJS->SlideEasing			= $this->ce_slider_jquery_slideEasing;
-			$objTplJS->Randomize			= $this->ce_slider_jquery_randomize;
-			$objTplJS->HoverPause			= $this->ce_slider_jquery_hoverPause;
-			$objTplJS->AutoHeight			= $this->ce_slider_jquery_autoHeight;
-			$objTplJS->AutoHeightSpeed		= $this->ce_slider_jquery_autoHeightSpeed;
-			$objTplJS->BigTarget			= $this->ce_slider_jquery_bigTarget;
+	  		/* Populate the javascript temaplte and add to <head> */
+			$this->TemplateJS->Width 				= $arrce_slider_jquery_Size[0];
+			$this->TemplateJS->Height 				= $arrce_slider_jquery_Size[1];
+			$this->TemplateJS->Container			= $this->ce_slider_jquery_container;
+			$this->TemplateJS->Play				 	= $this->ce_slider_jquery_play;
+			$this->TemplateJS->Pause				= $this->ce_slider_jquery_pause;
+			$this->TemplateJS->GenerateNextPrev		= $this->ce_slider_jquery_generateNextPrev;
+			$this->TemplateJS->NextClass			= $this->ce_slider_jquery_next;
+			$this->TemplateJS->PrevClass			= $this->ce_slider_jquery_prev;
+			$this->TemplateJS->NextImg				= $this->ce_slider_jquery_nextImg;
+			$this->TemplateJS->PrevImg				= $this->ce_slider_jquery_prevImg;
+			$this->TemplateJS->Pagination			= $this->ce_slider_jquery_pagination;
+			$this->TemplateJS->GeneratePagination	= $this->ce_slider_jquery_generatePagination;
+			$this->TemplateJS->PaginationClass		= $this->ce_slider_jquery_paginationClass;
+			$this->TemplateJS->CurrentClass			= $this->ce_slider_jquery_currentClass;
+			$this->TemplateJS->Start				= $this->ce_slider_jquery_start;
+			$this->TemplateJS->SlideSpeed			= $this->ce_slider_jquery_slideSpeed;
+			$this->TemplateJS->SlideEasing			= $this->ce_slider_jquery_slideEasing;
+			$this->TemplateJS->Randomize			= $this->ce_slider_jquery_randomize;
+			$this->TemplateJS->HoverPause			= $this->ce_slider_jquery_hoverPause;
+			$this->TemplateJS->AutoHeight			= $this->ce_slider_jquery_autoHeight;
+			$this->TemplateJS->AutoHeightSpeed		= $this->ce_slider_jquery_autoHeightSpeed;
+			$this->TemplateJS->BigTarget			= $this->ce_slider_jquery_bigTarget;
 
 			/* Parse and add after loading jquery */
 			// var_dump($GLOBALS['TL_MOOTOOLS']);
-			$GLOBALS['TL_MOOTOOLS'][]		= $objTplJS->parse();					
-
+			$GLOBALS['TL_MOOTOOLS'][]				= $this->TemplateJS->parse();	
 		}
 
     	/** --------------------------------------------------------------------
