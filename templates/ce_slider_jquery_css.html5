@@ -3,7 +3,7 @@
 		width: <?php echo $this->Width; ?>px;
 		height: <?php echo $this->Height; ?>px;
 	}
-	#<?php echo $this->container; ?> .slides_container div {
+	#<?php echo $this->Container; ?> .slides_container div {
 		width: <?php echo $this->Width; ?>px;
 		height: <?php echo $this->Height; ?>px;
 		display: block;

@@ -122,8 +122,8 @@ class ContentSliderJquery extends ContentElement
 			/* Create CSS template and add it to the <head> */
 			$objTplCSS = new FrontendTemplate();
 
-			$arrce_slider_jquery_Size		= unserialize($arraySliderElem->ce_slider_jquery_size);
-
+			$arrce_slider_jquery_Size		= unserialize($this->ce_slider_jquery_size);
+			
 			$objTplCSS->Width 				= $arrce_slider_jquery_Size[0];
     		$objTplCSS->Height 				= $arrce_slider_jquery_Size[1];
     		$objTplCSS->Container		 	= $this->ce_slider_jquery_container;

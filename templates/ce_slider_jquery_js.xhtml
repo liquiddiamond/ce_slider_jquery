@@ -23,31 +23,41 @@
 
 <script type="text/javascript">
 	$(function(){
-    	$("#<?php echo 'slides' ?>").slides({
+    	$("#<?php echo $this->Container; ?>").slides({
     		// preload: true,
     		// preloadImage: ,
     		// container: ,
-    		generateNextPrev: <?php echo ($this->generateNextPrev) ? 'true' : 'false'; ?>,
-    		next: '<?php echo $this->nextClass; ?>',
-    		prev: '<?php echo $this->prevClass; ?>',
-    		// pagination: <?php echo ($this->pagination) ? 'true' : 'false'; ?>,
-    		// generatePagination: <?php echo ($this->generatePagination) ? 'true' : 'false'; ?>,
-    		// paginationClass: '<?php echo $this->paginationClass; ?>',
-    		// currentClass: '<?php echo $this->currentClass; ?>',
-    		// fadeSpeed: ,
-    		// fadeEasing: ,
-    		slideSpeed: <?php echo $this->slideSpeed; ?>,
-    		// slideEasing: ,
-    		start: <?php echo $this->start; ?>,
-    		// effect: ,
-    		// crossfade: ,
-    		// randomize: ,
-    		play: <?php echo $this->play; ?>,
-    		pause: <?php echo $this->pause; ?>
-    		// hoverPause: ,
-    		// autoHeight: ,
-    		// autoHeightSpeed: ,
-    		// bigTarget: ,
+<?php if($this->GenerateNextPrev): ?>
+    		generateNextPrev: true,
+    		next: '<?php echo $this->NextClass; ?>',
+    		prev: '<?php echo $this->PrevClass; ?>',
+    		prevImg: '<?php echo $this->PrevImg; ?>',
+    		nextImg: '<?php echo $this->NextImg; ?>',
+<?php endif; ?>
+<?php if(!$this->Pagination): ?>
+    		pagination: <?php echo (($this->Pagination) ? 'true' : 'false' ); ?>,
+    		generatePagination: <?php echo ($this->GeneratePagination) ? 'true' : 'false'; ?>,
+    		paginationClass: '<?php echo $this->PaginationClass; ?>',
+    		currentClass: '<?php echo $this->CurrentClass; ?>',
+<?php endif; ?>
+			// effect: ,
+			// fadeSpeed: ,
+			// fadeEasing: ,
+			// crossfade: ,
+<?php if (strlen($this->SlideSpeed)): ?>
+    		slideSpeed: <?php echo $this->SlideSpeed; ?>,
+    		slideEasing: '<?php echo $this->SlideEasing; ?>',
+<?php endif; ?>
+    		start: <?php echo $this->Start; ?>,
+    		randomize: <?php echo (($this->Randomize) ? 'true' : 'false' ); ?>,
+    		play: <?php echo $this->Play; ?>,
+    		pause: <?php echo $this->Pause; ?>,
+    		hoverPause: <?php echo (($this->HoverPause) ? 'true' : 'false' ); ?>,
+<?php if(!$this->AutoHeight): ?>
+    		autoHeight: <?php echo (($this->AutoHeight) ? 'true' : 'false' ); ?>,
+    		autoHeightSpeed: <?php echo (($this->AutoHeightSpeed) ? 'true' : 'false' ); ?>,
+<?php endif; ?>
+    		bigTarget: <?php echo (($this->BigTarget) ? 'true' : 'false' ); ?>
     		// animationStart: ,
     		// animationComplete:
     	});
