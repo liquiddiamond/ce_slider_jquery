@@ -21,11 +21,10 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
- * @package    ce_slider_jquery 
- * @license    LGPL 
- * @filesource
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
+ * @package    ce_slider_jquery
+ * @license    GPL
  */
 
 
@@ -63,6 +62,10 @@ $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_paginationClass']	= array('P
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_currentClass']		= array('Active pagination item class', 'Specify the class for active pagination items.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_start']				= array('Start from slide', 'Specify the starting index (default: 1).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_useSlide']			= array('Use slide', 'Select to enable slide animation.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnPlay']		= array('Effect on play', 'Select the effect to use while playing');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnNav']		= array('Effect on navigation', 'Select the effect to use after clicking on navigation');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_slide']		= array('Slide', 'Apply a sliding effect');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_fade']		= array('Fade', 'Apply a fading effect');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideSpeed']		= array('Animation speed', 'Specify the animation speed (default: 350 milliseconds).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideEasing']		= array('Animation easing', 'Specify the animation easing effect (default: none).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_useFade']			= array('Use fade', 'Select to enable fade effect.');

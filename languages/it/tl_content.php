@@ -21,11 +21,10 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
- * @package    ce_slider_jquery 
- * @license    LGPL 
- * @filesource
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
+ * @package    ce_slider_jquery
+ * @license    GPL
  */
 
 

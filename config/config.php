@@ -21,11 +21,10 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
- * @package    ce_slider_jquery 
- * @license    LGPL 
- * @filesource
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
+ * @package    ce_slider_jquery
+ * @license    GPL
  */
 
 
@@ -97,9 +96,10 @@
  * Use function array_insert() to modify an existing CTE array.
  */
 
-array_insert($GLOBALS['TL_CTE']['images'], 2, array	(
-	'ce_slider_jquery' => 'ContentSliderJquery'
-));
+$GLOBALS['TL_CTE']['slideshows'] = array(
+	'ce_slider_jquery_start'	=> 'CEJquerySliderStart',
+	'ce_slider_jquery_end'		=> 'CEJquerySliderEnd'
+);
  
 
 /**

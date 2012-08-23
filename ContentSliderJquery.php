@@ -21,12 +21,11 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it>
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
  * 			   Nathan Searles <http://nathansearles.com>
  * @package    ce_slider_jquery 
  * @license    GPL
- * @filesource
  */
 
 /* 
@@ -47,9 +46,9 @@
 /**
  * Class ContentSliderJquery 
  *
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
- * @package    Controller
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
+ * @package    ce_slider_jquery
  */
 class ContentSliderJquery extends ContentElement
 {
@@ -79,20 +78,24 @@ class ContentSliderJquery extends ContentElement
 	 */
 	protected function compile()
 	{
-		if ($this->ce_slider_jquery_elemType == 'ce_slider_jquery_startElem')
+        /* Select jQuery slider start element */
+        if(!defined(TL_PLUGINS_URL)){
+            define("TL_PLUGINS_URL","");
+        }
+
+		if ($this->type == 'ce_slider_jquery' && $this->ce_slider_jquery_elemType == 'ce_slider_jquery_startElem')
 		{
-			/* Select jQuery slider start element */
-			// $GLOBALS['TL_JAVASCRIPT']['ce_slider_jquery']	= '<script src="plugins/ce_slider_jquery/ce_slider_jquery.slides.min.js"></script>';
-			$GLOBALS['TL_CSS']['ce_slider_jquery']			= 'plugins/ce_slider_jquery/ce_slider_jquery.css';
-			$GLOBALS['TL_MOOTOOLS']['ce_slider_jquery']		= '<script src="plugins/ce_slider_jquery/slides.jquery.js"></script>';
+			// $GLOBALS['TL_JAVASCRIPT']['ce_slider_jquery']	= '<script src="'.TL_PLUGINS_URL.'plugins/ce_slider_jquery/ce_slider_jquery.slides.min.js"></script>';
+			$GLOBALS['TL_CSS']['ce_slider_jquery']			= ''.TL_PLUGINS_URL.'plugins/ce_slider_jquery/ce_slider_jquery.css';
+			$GLOBALS['TL_MOOTOOLS']['ce_slider_jquery']		= '<script src="'.TL_PLUGINS_URL.'plugins/ce_slider_jquery/slides.jquery.js"></script>';
 
 			/*
 			 *	Create templates
 			 */
 			$this->$strTemplate 			= $this->ce_slider_jquery_template_html;
-			$this->Template					= new FrontendTemplate($this->strTemplate);
-			$this->TemplateCSS				= new FrontendTemplate($this->ce_slider_jquery_template_css);
-			$this->TemplateJS				= new FrontendTemplate($this->ce_slider_jquery_template_js);
+			$this->Template				= new FrontendTemplate($this->strTemplate);
+			$this->TemplateCSS			= new FrontendTemplate($this->ce_slider_jquery_template_css);
+			$this->TemplateJS			= new FrontendTemplate($this->ce_slider_jquery_template_js);
 			
 			$arrce_slider_jquery_Size		= unserialize($this->ce_slider_jquery_size);
 			
@@ -167,7 +170,6 @@ class ContentSliderJquery extends ContentElement
 			$this->TemplateJS->BigTarget			= $this->ce_slider_jquery_bigTarget;
 
 			/* Parse and add after loading jquery */
-			// var_dump($GLOBALS['TL_MOOTOOLS']);
 			$GLOBALS['TL_MOOTOOLS'][]				= $this->TemplateJS->parse();	
 		}
 
@@ -175,7 +177,7 @@ class ContentSliderJquery extends ContentElement
  		* Get end element of CE Slider
  		* Add Controls
   		* -------------------------------------------------------------------- */
-		elseif ($this->ce_slider_jquery_elemType == 'ce_slider_jquery_endElem')
+		elseif ($this->type == 'ce_slider_jquery' && $this->ce_slider_jquery_elemType == 'ce_slider_jquery_endElem')
 		{	
 			//get StartElement
 			$objStartElem = $this->Database->prepare("SELECT * FROM tl_content WHERE pid = ? AND invisible != 1 AND ce_slider_jquery_elemType = ? ORDER by sorting DESC")
@@ -198,7 +200,10 @@ class ContentSliderJquery extends ContentElement
 			$this->Template->GeneratePagination		= $objStartElem->ce_slider_jquery_generatePagination;
 			$this->Template->PaginationClass		= $objStartElem->ce_slider_jquery_paginationClass;
 			$this->Template->CurrentClass			= $objStartElem->ce_slider_jquery_currentClass;
-		}	
+		}
+		else {
+			return;
+		}
 	}
 }
 

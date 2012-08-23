@@ -21,11 +21,10 @@
  * Software Foundation website at <http://www.gnu.org/licenses/>.
  *
  * PHP version 5
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
- * @package    ce_slider_jquery 
- * @license    GPL 
- * @filesource
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
+ * @package    ce_slider_jquery
+ * @license    GPL
  */
 
  
@@ -33,7 +32,8 @@
  * Palettes
  *****************/
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery']						= '{type_legend},type;ce_slider_jquery_elemType';
+// Slideshow start / end
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery']						= '{type_legend}, type; ce_slider_jquery_elemType';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_elemType';
 
 
@@ -41,14 +41,24 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slide
  * Subpalettes
  *****************/
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_startElem'] 				= '{type_legend}, type, ce_slider_jquery_elemType; 
+// Slideshow start element
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_startElem'] 				= '{type_legend}, type; ce_slider_jquery_elemType; 
 																		   				{ce_slider_jquery_play_legend}, ce_slider_jquery_size, ce_slider_jquery_container, ce_slider_jquery_play, ce_slider_jquery_pause;
-																						{ce_slider_jquery_controls}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_prevImg, ce_slider_jquery_nextImg, ce_slider_jquery_pagination;
-																						{ce_slider_jquery_visualization}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
+																						{ce_slider_jquery_controls_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_prevImg, ce_slider_jquery_nextImg, ce_slider_jquery_pagination;
+																						{ce_slider_jquery_effects_legend}, ce_slider_jquery_effectOnPlay, ce_slider_jquery_effectOnNav;
+																						{ce_slider_jquery_visualization_legend}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
 																				   		{ce_slider_jquery_templates_legend}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
-																				   		{ce_slider_jquery_styling_legend}, align, space, cssID';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_endElem']			 	= '{type_legend}, type, ce_slider_jquery_elemType';
+																				   		{protected_legend:hide}, guests, protected; {expert_legend:hide}, align, space, cssID';
+// Slideshow end element
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_endElem']			 	= '{type_legend}, type; ce_slider_jquery_elemType';
 
+// Effects selectors
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_effectOnPlay';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_effectOnNav';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_effect_slide']		= 'ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_effect_fade']			= 'ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing';
+
+// 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_generateNextPrev';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_generateNextPrev']	= 'ce_slider_jquery_prev, ce_slider_jquery_next';
 
@@ -59,10 +69,17 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_pagination']		
 /*****************
  * Config
  *****************/
-$GLOBALS['TL_DCA']['tl_content']['config'] = array (
-	'ptable'        => 'tl_article',
-	'dataContainer' => 'Table'
-);
+
+/*$GLOBALS['TL_DCA']['tl_content']['config'] = array (
+	'dataContainer'               => 'Table',
+	'ptable'                      => 'tl_article',
+	'enableVersioning'            => true,
+	'onload_callback'			  => array
+	(
+		array('tl_content', 'checkPermission')
+	)
+);*/
+
 
 /*****************
  * Fields
@@ -73,7 +90,9 @@ $GLOBALS['TL_DCA']['tl_content']['config'] = array (
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_elemType'] = array (
 	'label' 		=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_elemType'],
   	'inputType' 	=> 'radio',
+	'default'       => 'ce_slider_jquery_startElem',
   	'options' 		=> array('ce_slider_jquery_startElem', 'ce_slider_jquery_endElem'),
+  	'reference'		=> &$GLOBALS['TL_LANG']['tl_content'],
   	'eval' 			=> array('submitOnChange'=>true, 'tl_class'=>'clr')
 );
 
@@ -186,6 +205,26 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_randomize'] = array
 	'eval'			=> array()
 );
 
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnPlay'] = array (
+	'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnPlay'],
+	'inputType' 	=> 'radio',
+	'exclude'       => true,
+	'default'       => 'ce_slider_jquery_effect_slide',
+  	'reference'		=> &$GLOBALS['TL_LANG']['tl_content'],
+  	'options' 		=> array('ce_slider_jquery_effect_slide', 'ce_slider_jquery_effect_fade'),
+  	'eval' 			=> array('submitOnChange'=>true, 'tl_class'=>'')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnNav'] = array (
+	'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnNav'],
+	'inputType' 	=> 'radio',
+	'exclude'       => true,
+	'default'       => 'ce_slider_jquery_effect_slide',
+  	'reference'		=> &$GLOBALS['TL_LANG']['tl_content'],
+  	'options' 		=> array('ce_slider_jquery_effect_slide', 'ce_slider_jquery_effect_fade'),
+  	'eval' 			=> array('submitOnChange'=>true, 'tl_class'=>'')
+);
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_slideSpeed'] = array (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideSpeed'],
 	'inputType'		=> 'text',
@@ -263,13 +302,12 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_css'] = ar
  * Class tl_slider_jquery
  *
  * Provide miscellaneous methods that are used by the data configuration array.
- * @copyright  Liquid Diamond 2011 
- * @author     Andrea Collet <andrea@liquiddiamond.it> 
+ * @copyright  Liquid Diamond 2011-2012
+ * @author     Andrea Collet <collet.andrea@gmail.com>
  * @package    ce_slider_jquery 
  * @license    GPL 
- * @filesource
  */
-class tl_slider_jquery extends Backend
+class tl_slider_jquery extends tl_content
 {
 	/**
 	 * Import the back end user object
