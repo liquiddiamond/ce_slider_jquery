@@ -84,12 +84,19 @@ $GLOBALS['TL_LANG']['tl_content']['none']								= 'None';
 
 
 /**
+ * Misc Messages
+ */
+$GLOBALS['TL_LANG']['MSC']['ce_slider_jquery_startElem']				= 'Start';
+$GLOBALS['TL_LANG']['MSC']['ce_slider_jquery_endElem']					= 'End';
+
+
+/**
  * Error Messages
  */
 
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Pagination auto-generation is already active.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS ID already exists.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_module_error']				= 'Die Content-Element ce_jquery_slider existiert nicht.';
-
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS Slider ID already exists.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element']			= 'The Content-Element ce_jquery_slider_start does not exist.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_end_element']			= 'The Content-Element ce_jquery_slider_end does not exist.';
 
 ?>

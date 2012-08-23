@@ -97,8 +97,8 @@
  */
 
 $GLOBALS['TL_CTE']['slideshows'] = array(
-	'ce_slider_jquery_start'	=> 'CEJquerySliderStart',
-	'ce_slider_jquery_end'		=> 'CEJquerySliderEnd'
+	'ce_slider_jquery_start'	=> 'CESliderJqueryStart',
+	'ce_slider_jquery_end'		=> 'CESliderJqueryEnd'
 );
  
 

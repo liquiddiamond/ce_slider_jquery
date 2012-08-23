@@ -32,53 +32,35 @@
  * Palettes
  *****************/
 
-// Slideshow start / end
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery']						= '{type_legend}, type; ce_slider_jquery_elemType';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_elemType';
+// Slideshow start element
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_start'] 					= '{type_legend}, type;
+																						   {ce_slider_jquery_play_legend}, ce_slider_jquery_size, ce_slider_jquery_container, ce_slider_jquery_play, ce_slider_jquery_pause;
+																						   {ce_slider_jquery_controls_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_prevImg, ce_slider_jquery_nextImg, ce_slider_jquery_pagination;
+																						   {ce_slider_jquery_effects_legend}, ce_slider_jquery_effectOnPlay, ce_slider_jquery_effectOnNav;
+																						   {ce_slider_jquery_visualization_legend}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
+																					   	   {ce_slider_jquery_templates_legend}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
+																					   	   {protected_legend:hide}, guests, protected; {expert_legend:hide}, align, space, cssID';
+// Slideshow end element
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_end']			 		= '{type_legend}, type;';
 
 
 /*****************
  * Subpalettes
  *****************/
 
-// Slideshow start element
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_startElem'] 				= '{type_legend}, type; ce_slider_jquery_elemType; 
-																		   				{ce_slider_jquery_play_legend}, ce_slider_jquery_size, ce_slider_jquery_container, ce_slider_jquery_play, ce_slider_jquery_pause;
-																						{ce_slider_jquery_controls_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_prevImg, ce_slider_jquery_nextImg, ce_slider_jquery_pagination;
-																						{ce_slider_jquery_effects_legend}, ce_slider_jquery_effectOnPlay, ce_slider_jquery_effectOnNav;
-																						{ce_slider_jquery_visualization_legend}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
-																				   		{ce_slider_jquery_templates_legend}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
-																				   		{protected_legend:hide}, guests, protected; {expert_legend:hide}, align, space, cssID';
-// Slideshow end element
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_endElem']			 	= '{type_legend}, type; ce_slider_jquery_elemType';
-
 // Effects selectors
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_effectOnPlay';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_effectOnNav';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_effect_slide']		= 'ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_effect_fade']			= 'ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_effect_fade']			= 'ce_slider_jquery_fadeSpeed, ce_slider_jquery_fadeEasing';
 
-// 
+// Navigation selectors
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_generateNextPrev';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_generateNextPrev']	= 'ce_slider_jquery_prev, ce_slider_jquery_next';
 
+// Pagination selectors
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]							= 'ce_slider_jquery_pagination';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_pagination']			= 'ce_slider_jquery_generatePagination, ce_slider_jquery_paginationClass, ce_slider_jquery_currentClass';
-
-
-/*****************
- * Config
- *****************/
-
-/*$GLOBALS['TL_DCA']['tl_content']['config'] = array (
-	'dataContainer'               => 'Table',
-	'ptable'                      => 'tl_article',
-	'enableVersioning'            => true,
-	'onload_callback'			  => array
-	(
-		array('tl_content', 'checkPermission')
-	)
-);*/
 
 
 /*****************
@@ -86,15 +68,6 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_pagination']		
  *****************/
  
 /* {ce_slider_jquery_play_legend} */
-
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_elemType'] = array (
-	'label' 		=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_elemType'],
-  	'inputType' 	=> 'radio',
-	'default'       => 'ce_slider_jquery_startElem',
-  	'options' 		=> array('ce_slider_jquery_startElem', 'ce_slider_jquery_endElem'),
-  	'reference'		=> &$GLOBALS['TL_LANG']['tl_content'],
-  	'eval' 			=> array('submitOnChange'=>true, 'tl_class'=>'clr')
-);
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_size'] = array (
 	'label'			=> &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_size'],

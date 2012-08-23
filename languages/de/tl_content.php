@@ -84,7 +84,8 @@ $GLOBALS['TL_LANG']['tl_content']['none']								= 'Keiner';
  */
 
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Pagination Auto-Generation ist bereits aktiv.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS-ID ist bereits vorhanden.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_module_error']				= 'Il content element ce_jquery_slider non esiste.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS-Slider-ID ist bereits vorhanden.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element']			= 'Die Content-Element ce_jquery_slider_start existiert nicht.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_end_element']			= 'Die Content-Element ce_jquery_slider_end existiert nicht.';
 
 ?>
