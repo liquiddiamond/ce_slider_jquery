@@ -24,15 +24,12 @@
 <script type="text/javascript">
     $(function(){
         $("#<?php echo $this->Container; ?>").slides({
-            // preload: true,
-            // preloadImage: ,
-            // container: ,
+            /*preload: true,
+            preloadImage: ,*/
 <?php if($this->GenerateNextPrev): ?>
             generateNextPrev: true,
             next: '<?php echo $this->NextClass; ?>',
             prev: '<?php echo $this->PrevClass; ?>',
-            prevImg: '<?php echo $this->PrevImg; ?>',
-            nextImg: '<?php echo $this->NextImg; ?>',
 <?php endif; ?>
 <?php if(!$this->Pagination): ?>
             pagination: <?php echo (($this->Pagination) ? 'true' : 'false' ); ?>,
@@ -40,14 +37,12 @@
             paginationClass: '<?php echo $this->PaginationClass; ?>',
             currentClass: '<?php echo $this->CurrentClass; ?>',
 <?php endif; ?>
-            // effect: ,
-            fadeSpeed: 350,
-            // fadeEasing: ,
-            crossfade: true,
-<?php if (strlen($this->SlideSpeed)): ?>
+            effect: '<?php echo $this->Effect; ?>',
             slideSpeed: <?php echo $this->SlideSpeed; ?>,
             slideEasing: '<?php echo $this->SlideEasing; ?>',
-<?php endif; ?>
+            fadeSpeed: <?php echo $this->FadeSpeed; ?>,
+            fadeEasing: '<?php echo $this->FadeEasing; ?>',
+            crossfade: <?php echo (($this->Crossfade) ? 'true' : 'false' ); ?>,
             start: <?php echo $this->Start; ?>,
             randomize: <?php echo (($this->Randomize) ? 'true' : 'false' ); ?>,
             play: <?php echo $this->Play; ?>,
@@ -58,8 +53,6 @@
             autoHeightSpeed: <?php echo (($this->AutoHeightSpeed) ? 'true' : 'false' ); ?>,
 <?php endif; ?>
             bigTarget: <?php echo (($this->BigTarget) ? 'true' : 'false' ); ?>
-            // animationStart: ,
-            // animationComplete:
         });
     });
 </script>
