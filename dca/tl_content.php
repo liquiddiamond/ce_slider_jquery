@@ -37,11 +37,9 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_start']          
                                                                                            {ce_slider_jquery_play_legend}, ce_slider_jquery_size, ce_slider_jquery_container, ce_slider_jquery_play, ce_slider_jquery_pause;
                                                                                            {ce_slider_jquery_navigation_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_pagination;
                                                                                            {ce_slider_jquery_effects_legend}, ce_slider_jquery_effectOnPlay, ce_slider_jquery_effectOnNav, ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing, ce_slider_jquery_fadeSpeed, ce_slider_jquery_fadeEasing, ce_slider_jquery_crossfade;
-                                                                                           {ce_slider_jquery_visualization_legend}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
-                                                                                           {ce_slider_jquery_controller_legend},
-                                                                                               ce_slider_jquery_preload,
-                                                                                               ce_slider_jquery_preloadImage;
-                                                                                           {ce_slider_jquery_templates_legend}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
+                                                                                           {ce_slider_jquery_visualization_legend:hide}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
+                                                                                           {ce_slider_jquery_controller_legend}, ce_slider_jquery_preload;
+                                                                                           {ce_slider_jquery_templates_legend:hide}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
                                                                                            {protected_legend:hide}, guests, protected; {expert_legend:hide}, align, space, cssID';
 // Slideshow end element
 $GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_end']                    = '{type_legend}, type;';
@@ -51,6 +49,9 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]                  
 
 // Pagination selectors
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]                          = 'ce_slider_jquery_pagination';
+
+// Preload selectors
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][]                          = 'ce_slider_jquery_preload';
 
 
 /*****************
@@ -63,6 +64,8 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_generateNextPr
 // Pagination
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_pagination']          = 'ce_slider_jquery_generatePagination, ce_slider_jquery_paginationClass, ce_slider_jquery_currentClass';
 
+// Preload
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_preload']             = 'ce_slider_jquery_preloadimage';
 
 /*****************
  * Fields
@@ -70,28 +73,32 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['ce_slider_jquery_pagination']  
  
 /* {ce_slider_jquery_play_legend} */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_size'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_size'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_size'],
     'inputType'     => 'text',
     'default'       => array('640', '220'),
     'eval'          => array('maxlength'=>4, 'mandatory'=>true, 'rgxp'=>'digit', 'multiple'=>true, 'size'=>2, 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_container'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_container'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_container'],
     'inputType'     => 'text',
     'eval'          => array('mandatory'=>true, 'nospace'=>true, 'tl_class'=>'w50'),
     'load_callback' => array( array('tl_slider_jquery', 'checkIDContainer') )
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_play'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_play'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_play'],
     'inputType'     => 'text',
     'default'       => '3000',
     'eval'          => array('maxlength'=>4, 'mandatory'=>true, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pause'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pause'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pause'],
     'inputType'     => 'text',
     'default'       => '0',
@@ -101,28 +108,32 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pause'] = array (
 
 /* {ce_slider_jquery_navigation_legend} */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_generateNextPrev'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_generateNextPrev'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generateNextPrev'],
     'inputType'     => 'checkbox',
     'default'       => true,
     'eval'          => array('submitOnChange'=>true, 'tl_class'=>'clr')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_prev'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_prev'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_prev'],
     'inputType'     => 'text',
     'default'       => 'slider_prev_arrow',
     'eval'          => array('maxlength'=>255, 'rgxp'=>'alnum', 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_next'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_next'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_next'],
     'inputType'     => 'text',
     'default'       => 'slider_next_arrow',
     'eval'          => array('maxlength'=>255, 'rgxp'=>'alnum', 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pagination'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pagination'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pagination'],
     'inputType'     => 'checkbox',
     'default'       => false,
@@ -130,20 +141,23 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pagination'] = arra
     'save_callback' => array( array('tl_slider_jquery', 'checkPagination'))
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_generatePagination'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_generatePagination'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generatePagination'],
     'inputType'     => 'checkbox',
     'default'       => false,
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_paginationClass'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_paginationClass'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_paginationClass'],
     'inputType'     => 'text',
     'default'       => 'slider_pagination',
     'eval'          => array('maxlength'=>255, 'rgxp'=>'alnum', 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_currentClass'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_currentClass'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_currentClass'],
     'inputType'     => 'text',
     'default'       => 'slider_current',
@@ -153,7 +167,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_currentClass'] = ar
 
 /* {ce_slider_jquery_effects_legend} */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnPlay'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnPlay'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnPlay'],
     'inputType'     => 'radio',
     'exclude'       => true,
@@ -163,7 +178,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnPlay'] = ar
     'eval'          => array('multiple'=>true, 'tl_class'=>'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnNav'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnNav'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnNav'],
     'inputType'     => 'radio',
     'exclude'       => true,
@@ -173,35 +189,40 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_effectOnNav'] = arr
     'eval'          => array('multiple'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_slideSpeed'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_slideSpeed'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideSpeed'],
     'inputType'     => 'text',
     'default'       => '350',
     'eval'          => array('maxlength'=>4, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_slideEasing'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_slideEasing'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideEasing'],
     'inputType'     => 'select',
     'options'       => array('easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeInCubic', 'easeOutCubic', 'easeInOutCubic', 'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint', 'easeOutQuint', 'easeInOutQuint', 'easeInSine', 'easeOutSine', 'easeInOutSine', 'easeInExpo', 'easeOutExpo', 'easeInOutExpo', 'easeInCirc', 'easeOutCirc', 'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic', 'easeInBack', 'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce'),
     'eval'          => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_content']['none'], 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_fadeSpeed'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_fadeSpeed'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_fadeSpeed'],
     'inputType'     => 'text',
     'default'       => '350',
     'eval'          => array('maxlength'=>4, 'rgxp'=>'digit', 'nospace'=>true, 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_fadeEasing'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_fadeEasing'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_fadeEasing'],
     'inputType'     => 'select',
     'options'       => array('easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeInCubic', 'easeOutCubic', 'easeInOutCubic', 'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint', 'easeOutQuint', 'easeInOutQuint', 'easeInSine', 'easeOutSine', 'easeInOutSine', 'easeInExpo', 'easeOutExpo', 'easeInOutExpo', 'easeInCirc', 'easeOutCirc', 'easeInOutCirc', 'easeInElastic', 'easeOutElastic', 'easeInOutElastic', 'easeInBack', 'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce', 'easeInOutBounce'),
     'eval'          => array('includeBlankOption'=>true, 'blankOptionLabel'=>$GLOBALS['TL_LANG']['tl_content']['none'], 'tl_class'=>'w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_crossfade'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_crossfade'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_crossfade'],
     'inputType'     => 'checkbox',
     'default'       => false,
@@ -211,42 +232,48 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_crossfade'] = array
 
 /* {ce_slider_jquery_visualization_legend} */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_start'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_start'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_start'],
     'inputType'     => 'text',
     'default'       => '1',
     'eval'          => array('maxlength'=>4, 'rgxp'=>'digit', 'nospace'=>true)
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_randomize'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_randomize'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_randomize'],
     'inputType'     => 'checkbox',
     'default'       => false,
     'eval'          => array()
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_hoverPause'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_hoverPause'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_hoverPause'],
     'inputType'     => 'checkbox',
     'default'       => false,
     'eval'          => array('tl_class'=>'clr')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_bigTarget'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_bigTarget'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_bigTarget'],
     'inputType'     => 'checkbox',
     'default'       => false,
     'eval'          => array('tl_class'=>'clr')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeight'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeight'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeight'],
     'inputType'     => 'checkbox',
     'default'       => false,
     'eval'          => array('tl_class'=>'clr w50')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeightSpeed'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeightSpeed'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeightSpeed'],
     'inputType'     => 'text',
     'default'       => '350',
@@ -256,17 +283,19 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeightSpeed'] =
 
 /* {ce_slider_jquery_controller_legend} */
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preload'] = array (
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preload'] = array
+(
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preload'],
     'inputType'     => 'checkbox',
     'default'       => false,
-    'eval'          => array('tl_class'=>'clr')
+    'eval'          => array('submitOnChange'=>true, 'tl_class'=>'clr')
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preloadImage'] = array (
-    'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preloadImage'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preloadimage'] = array
+(
+    'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preloadimage'],
     'inputType'     => 'fileTree',
-    'eval'          => array('tl_class'=>'clr')
+    'eval'          => array('tl_class'=>'clr', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'gif,png,apng,jpg,jpeg', 'path'=>'tl_files', 'fieldType'=>'radio', 'includeBlankOption'=>true)
 );
 
 

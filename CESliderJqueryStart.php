@@ -152,10 +152,21 @@ class CESliderJqueryStart extends ContentElement
 
         if ($sliderElements->numRows < 1)
         {
-            $this->log('CE Slider jQuery does not contain any Content Element', 'ce_slider_jquery compile()', TL_ERROR);
+            $this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_elements'], 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
         $arraySliderElem    = $sliderElements->fetchAllAssoc();
+
+        /* Check for nested start elements */
+        /*while($sliderElements->next())
+        {
+            /*print_r($sliderElements->type);
+            die();
+            if ($sliderElements->type == 'ce_slider_jquery_start')) {
+                $this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements'], 'ce_slider_jquery compile()', TL_ERROR);
+                return;
+            }*/
+        /*}*/
 
         /* Populate the CSS template and add it to the <head> */
         $this->TemplateCSS->Width               = $arrce_slider_jquery_Size[0];
@@ -194,6 +205,15 @@ class CESliderJqueryStart extends ContentElement
         $this->TemplateJS->AutoHeight           = $this->ce_slider_jquery_autoHeight;
         $this->TemplateJS->AutoHeightSpeed      = $this->ce_slider_jquery_autoHeightSpeed;
         $this->TemplateJS->BigTarget            = $this->ce_slider_jquery_bigTarget;
+        $this->TemplateJS->Preload              = $this->ce_slider_jquery_preload;
+        if ($this->ce_slider_jquery_preloadimage)
+        {
+            $this->TemplateJS->PreloadImage     = $this->ce_slider_jquery_preloadimage;
+        }
+        else
+        {
+            $this->TemplateJS->PreloadImage     = TL_PATH.'/system/modules/ce_slider_jquery/html/img/loading.gif';
+        }
 
         /* Parse the JS template and add it after jquery */
         $GLOBALS['TL_MOOTOOLS'][]               = $this->TemplateJS->parse();

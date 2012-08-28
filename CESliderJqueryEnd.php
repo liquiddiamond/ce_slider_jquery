@@ -87,9 +87,16 @@ class CESliderJqueryEnd extends ContentElement
 		/* get StartElement */
 		$objStartElem = $this->Database->prepare("SELECT * FROM tl_content WHERE pid = ? AND invisible != 1 AND type = ? ORDER by sorting DESC")
 							 ->limit(1)->execute($this->pid, 'ce_slider_jquery_start');
+		
 		if ($objStartElem->numRows < 1)
 		{
 			$this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element'], 'ce_slider_jquery compile()', TL_ERROR);
+			return;
+		}
+
+		if ($objStartElem->numRows > 1)
+		{
+			$this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements'], 'ce_slider_jquery compile()', TL_ERROR);
 			return;
 		}
 		

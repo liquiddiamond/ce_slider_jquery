@@ -24,8 +24,10 @@
 <script type="text/javascript">
     $(function(){
         $("#<?php echo $this->Container; ?>").slides({
-            /*preload: true,
-            preloadImage: ,*/
+<?php if($this->Preload): ?>
+            preload: true,
+            preloadImage: '<?php echo $this->PreloadImage; ?>',
+<?php endif; ?>
 <?php if($this->GenerateNextPrev): ?>
             generateNextPrev: true,
             next: '<?php echo $this->NextClass; ?>',
