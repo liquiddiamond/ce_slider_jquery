@@ -35,9 +35,12 @@
 // Slideshow start element
 $GLOBALS['TL_DCA']['tl_content']['palettes']['ce_slider_jquery_start']                  = '{type_legend}, type;
                                                                                            {ce_slider_jquery_play_legend}, ce_slider_jquery_size, ce_slider_jquery_container, ce_slider_jquery_play, ce_slider_jquery_pause;
-                                                                                           {ce_slider_jquery_controls_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_pagination;
+                                                                                           {ce_slider_jquery_navigation_legend}, ce_slider_jquery_generateNextPrev, ce_slider_jquery_pagination;
                                                                                            {ce_slider_jquery_effects_legend}, ce_slider_jquery_effectOnPlay, ce_slider_jquery_effectOnNav, ce_slider_jquery_slideSpeed, ce_slider_jquery_slideEasing, ce_slider_jquery_fadeSpeed, ce_slider_jquery_fadeEasing, ce_slider_jquery_crossfade;
                                                                                            {ce_slider_jquery_visualization_legend}, ce_slider_jquery_start, ce_slider_jquery_randomize, ce_slider_jquery_hoverPause, ce_slider_jquery_bigTarget, ce_slider_jquery_autoHeight, ce_slider_jquery_autoHeightSpeed;
+                                                                                           {ce_slider_jquery_controller_legend},
+                                                                                               ce_slider_jquery_preload,
+                                                                                               ce_slider_jquery_preloadImage;
                                                                                            {ce_slider_jquery_templates_legend}, ce_slider_jquery_template_html, ce_slider_jquery_template_js, ce_slider_jquery_template_css;
                                                                                            {protected_legend:hide}, guests, protected; {expert_legend:hide}, align, space, cssID';
 // Slideshow end element
@@ -96,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_pause'] = array (
 );
 
 
-/* {ce_slider_jquery_controls_legend} */
+/* {ce_slider_jquery_navigation_legend} */
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_generateNextPrev'] = array (
     'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generateNextPrev'],
@@ -251,12 +254,28 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_autoHeightSpeed'] =
 );
 
 
+/* {ce_slider_jquery_controller_legend} */
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preload'] = array (
+    'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preload'],
+    'inputType'     => 'checkbox',
+    'default'       => false,
+    'eval'          => array('tl_class'=>'clr')
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_preloadImage'] = array (
+    'label'         => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preloadImage'],
+    'inputType'     => 'fileTree',
+    'eval'          => array('tl_class'=>'clr')
+);
+
+
 /* {ce_slider_jquery_templates_legend} */
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_html'] = array
 (
   'label'           => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_html'],
-  'default'         => 'ce_slider_jquery_html',
+  'default'         => 'ce_slider_jquery_html_default',
   'inputType'       => 'select',
   'eval'            => array('mandatory' => true),
   'options_callback'=> array('tl_slider_jquery', 'getHTMLTemplate')
@@ -265,7 +284,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_html'] = a
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_js'] = array
 (
   'label'           => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_js'],
-  'default'         => 'ce_slider_jquery_js',
+  'default'         => 'ce_slider_jquery_js_default',
   'inputType'       => 'select',
   'eval'            => array('mandatory' => true),
   'options_callback'=> array('tl_slider_jquery', 'getJSTemplate')
@@ -274,7 +293,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_js'] = arr
 $GLOBALS['TL_DCA']['tl_content']['fields']['ce_slider_jquery_template_css'] = array
 (
   'label'           => &$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_css'],
-  'default'         => 'ce_slider_jquery_css',
+  'default'         => 'ce_slider_jquery_css_default',
   'inputType'       => 'select',
   'eval'            => array('mandatory' => true),
   'options_callback'=> array('tl_slider_jquery', 'getCSSTemplate')
@@ -366,7 +385,28 @@ class tl_slider_jquery extends tl_content
         {
             $intPid = $this->Input->get('id');
         }
-        return $this->getTemplateGroup('ce_slider_jquery_html', $intPid);
+
+        // Get the page ID
+        $objArticle = $this->Database->prepare("SELECT pid FROM tl_article WHERE id=?")
+                           ->limit(1)
+                           ->execute($dc->activeRecord->pid);
+
+        // Inherit the page settings
+        $objPage = $this->getPageDetails($objArticle->pid);
+
+        // Get the theme ID
+        $objLayout = $this->Database->prepare("SELECT pid FROM tl_layout WHERE id=?")
+                          ->limit(1)
+                          ->execute($objPage->layout);
+
+        // Return all ce_slider_jquery html5 templates
+        return $this->getTemplateGroup('ce_slider_jquery_html_', $objLayout->pid);
+
+        /*if (version_compare(VERSION.BUILD, '2.9.0', '>='))
+        {
+            return $this->getTemplateGroup('ce_slider_jquery_html_', $intPid);
+        }
+        return $this->getTemplateGroup('ce_slider_jquery_html_');*/
     }
     
     /**
@@ -382,7 +422,30 @@ class tl_slider_jquery extends tl_content
         {
             $intPid = $this->Input->get('id');
         }
-        return $this->getTemplateGroup('ce_slider_jquery_js', $intPid);
+
+        // Get the page ID
+        $objArticle = $this->Database->prepare("SELECT pid FROM tl_article WHERE id=?")
+                           ->limit(1)
+                           ->execute($dc->activeRecord->pid);
+
+        // Inherit the page settings
+        $objPage = $this->getPageDetails($objArticle->pid);
+
+        // Get the theme ID
+        $objLayout = $this->Database->prepare("SELECT pid FROM tl_layout WHERE id=?")
+                          ->limit(1)
+                          ->execute($objPage->layout);
+
+        // Return all ce_slider_jquery javascript templates
+        return $this->getTemplateGroup('ce_slider_jquery_js_', $objLayout->pid);
+
+
+        /*if (version_compare(VERSION.BUILD, '2.9.0', '>='))
+        {
+            return $this->getTemplateGroup('ce_slider_jquery_js_', $intPid);
+        }
+        return $this->getTemplateGroup('ce_slider_jquery_js_');*/
+
     }
     
     /**
@@ -398,7 +461,28 @@ class tl_slider_jquery extends tl_content
         {
             $intPid = $this->Input->get('id');
         }
-        return $this->getTemplateGroup('ce_slider_jquery_css', $intPid);
+
+        // Get the page ID
+        $objArticle = $this->Database->prepare("SELECT pid FROM tl_article WHERE id=?")
+                           ->limit(1)
+                           ->execute($dc->activeRecord->pid);
+
+        // Inherit the page settings
+        $objPage = $this->getPageDetails($objArticle->pid);
+
+        // Get the theme ID
+        $objLayout = $this->Database->prepare("SELECT pid FROM tl_layout WHERE id=?")
+                          ->limit(1)
+                          ->execute($objPage->layout);
+
+        // Return all ce_slider_jquery css templates
+        return $this->getTemplateGroup('ce_slider_jquery_css_', $objLayout->pid);
+
+        /*if (version_compare(VERSION.BUILD, '2.9.0', '>='))
+        {
+            return $this->getTemplateGroup('ce_slider_jquery_css_', $intPid);
+        }
+        return $this->getTemplateGroup('ce_slider_jquery_css_');*/
     }
 }
 ?>

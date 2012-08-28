@@ -1,0 +1,31 @@
+
+<?php 
+
+/* 
+ * This Contao module works thanks to
+ * 
+ * SlidesJs jQuery Slider script by Nathan Searles
+ * 
+ * Version 1.1.9 - Updated September 5th, 2011
+ * 
+ * http://slidesjs.com/
+ * http://github.com/nathansearles/slides/
+ * http://nathansearles.com/
+ * 
+ * SlidesJs is licensed under the Apache license. http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ */
+
+ ?>
+
+<?php if($this->Output == 'start'): ?>
+<section class="ce_slider_jquery block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+	<div id="<?php echo $this->Container; ?>">
+		<div class="slides_container">
+<?php else: ?>
+		</div>
+		<div class="navigation_container">
+		</div>
+	</div>
+</section>
+<?php endif; ?>
