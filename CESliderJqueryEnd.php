@@ -90,7 +90,9 @@ class CESliderJqueryEnd extends ContentElement
 		
 		if ($objStartElem->numRows < 1)
 		{
-			$this->addErrorMessage('The Content-Element ce_jquery_slider_start does not exist.');
+			if (version_compare(VERSION, '2.10', '>')) {
+				$this->addErrorMessage('The Content-Element ce_jquery_slider_start does not exist.');
+			}
             $this->log('The Content-Element ce_jquery_slider_start does not exist.', 'ce_slider_jquery compile()', TL_ERROR);
             return;
 		}
@@ -99,7 +101,9 @@ class CESliderJqueryEnd extends ContentElement
 		/* Check for nested start elements */
 		if ($objStartElem->numRows > 1)
 		{
-			$this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+			if (version_compare(VERSION, '2.10', '>')) {
+				$this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+			}
             $this->log('Module ce_slider_jquery does not support nested start or end elements.', 'ce_slider_jquery compile()', TL_ERROR);
             return;
 		}

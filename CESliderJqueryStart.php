@@ -142,7 +142,9 @@ class CESliderJqueryStart extends ContentElement
 
         if ($sliderEndElem->numRows < 1)
         {
-            $this->addErrorMessage('The Content-Element ce_jquery_slider_end does not exist.');
+            if (version_compare(VERSION, '2.10', '>')) {
+                $this->addErrorMessage('The Content-Element ce_jquery_slider_end does not exist.');
+            }
             $this->log('The Content-Element ce_jquery_slider_end does not exist.', 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
@@ -154,7 +156,9 @@ class CESliderJqueryStart extends ContentElement
 
         if ($sliderElements->numRows < 1)
         {
-            $this->addErrorMessage('CE Slider jQuery does not contain any Content Element');
+            if (version_compare(VERSION, '2.10', '>')) {
+                $this->addErrorMessage('CE Slider jQuery does not contain any Content Element');
+            }
             $this->log('CE Slider jQuery does not contain any Content Element', 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
@@ -165,7 +169,9 @@ class CESliderJqueryStart extends ContentElement
         ->execute($this->pid, 'ce_slider_jquery_start', $this->sorting, $sliderEndElem->sorting);
 
         if ($sliderNestedElements->numRows > 0) {
-            $this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+            if (version_compare(VERSION, '2.10', '>')) {
+                $this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+            }
             $this->log('Module ce_slider_jquery does not support nested start or end elements.', 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
