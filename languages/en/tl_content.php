@@ -32,13 +32,14 @@
  * Legeneds
  */
 
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_play_legend']		= 'Slideshow settings';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_controls']			= 'Navigation and pagination settings';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_visualization']		= 'Visualization settings';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_templates_legend']	= 'Templates settings';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_styling_legend']	= 'Advanced settings';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_slide']		= 'Slide';
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_fade']		= 'Fade';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_play_legend']			= 'Slideshow settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_navigation_legend']		= 'Navigation and pagination settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_visualization_legend']	= 'Visualization settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effects_legend']		= 'Effects settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_controller_legend']		= 'Advanced settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_templates_legend']		= 'Templates settings';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_slide']			= 'Slide';
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_fade']			= 'Fade';
 
 
 /**
@@ -46,7 +47,6 @@ $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_fade']		= 'Fade';
  */
 
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery']					= array('Slider jQuery', 'Create a slider that uses the jQuery library.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_elemType']			= array('Item type', 'Specifies whether the slider should begin and end.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_startElem']			= array('Start', 'Create an element of type jQuery slider.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_endElem']			= array('End', 'Limit the items to be included in the jQuery slider.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_size']				= array('Size', 'Set the size of the slider.');
@@ -73,6 +73,8 @@ $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_hoverPause']		= array('Pause
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_bigTarget']			= array('Big Target', 'Select to make the whole slide link to next one on click.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeight']		= array('Auto-height', 'Select to auto adjust height.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeightSpeed']	= array('Auto-height speed', 'Specify the auto-height animation time (default: 350 milliseconds).');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preload']			= array('Preload', 'Select to activate content preload.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preloadimage']		= array('Preloader image', 'Select a custom animated image to show on preload.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_html']		= array('HTML5 Template', 'Specify HTML5 template.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_js']		= array('JavaScript Template', 'Specify JavaScript template.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_template_css']		= array('CSS Template', 'Specify CSS template.');
@@ -93,8 +95,4 @@ $GLOBALS['TL_LANG']['MSC']['ce_slider_jquery_endElem']					= 'End';
 
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Pagination auto-generation is already active.';
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS Slider ID already exists.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element']			= 'The Content-Element ce_jquery_slider_start does not exist.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_end_element']			= 'The Content-Element ce_jquery_slider_end does not exist.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements']		= 'Module ce_slider_jquery does not support nested start or end elements.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_elements']				= 'CE Slider jQuery does not contain any Content Element';
 ?>
