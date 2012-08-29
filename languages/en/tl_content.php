@@ -46,32 +46,32 @@ $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effect_fade']			= 'Fade';
  * Palettes and subpalettes
  */
 
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery']					= array('Slider jQuery', 'Create a slider that uses the jQuery library.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_startElem']			= array('Start', 'Create an element of type jQuery slider.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_endElem']			= array('End', 'Limit the items to be included in the jQuery slider.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery']					= array('Slider jQuery', 'Create a slider using jQuery.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_startElem']			= array('Start', 'Starting element of type jQuery slider.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_endElem']			= array('End', 'Ending element of type jQuery slider.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_size']				= array('Size', 'Set the size of the slider.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_container']			= array('Slider container', 'Specify the ID of the slides container.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_play']				= array('Playback interval', 'Playback interval between a slide and the next (Default: 3000 milliseconds).');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pause']				= array('Pause after slide opening', 'Duration of the pause after the appearance of a slide (default: 0 milliseconds).');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generateNextPrev']	= array('Use navigation arrows', 'Select to add the navigation arrows.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_prev']				= array('\'previous\' arrow class', 'Specify the class for the container of the arrow \'previous\'.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_next']				= array('\'next\' arrow class', 'the class for the container of the arrow \'next\'.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pagination']		= array('Use pagination', 'Select to add pagination.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generatePagination']= array('Autogenerate pagination', 'Select to auto-generate pagination.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_paginationClass']	= array('Pagination item class', 'Specify the class for pagination items.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_currentClass']		= array('Active pagination item class', 'Specify the class for active pagination items.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnPlay']		= array('Effect on play', 'Select the effect to use while playing');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnNav']		= array('Effect on navigation', 'Select the effect to use after clicking on navigation');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pause']				= array('Pause after navigation', 'Duration of the pause after clicking on navigation (default: 0 milliseconds).');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generateNextPrev']	= array('Navigation buttons', 'Select to add the navigation (\'prev\' and \'next\') buttons.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_prev']				= array('\'previous\' arrow class', 'Specify the class for the container of the \'previous\' button.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_next']				= array('\'next\' arrow class', 'the class for the container of the arrow \'next\' button.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_pagination']		= array('Pagination', 'Select to enable slides pagination.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_generatePagination']= array('Auto-generate pagination', 'Select to auto-generate pagination buttons.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_paginationClass']	= array('Pagination item class', 'Specify a class for pagination buttons.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_currentClass']		= array('Active pagination item class', 'Specify a class for the active pagination buttons.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnPlay']		= array('Effect on play and navigation click', 'Select the effect to use while playing and after clicking on navigation buttons.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_effectOnNav']		= array('Effect on pagination click', 'Select the effect to use after clicking on navigation buttons.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideSpeed']		= array('Slide animation speed', 'Specify the slide animation speed (default: 350 milliseconds).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_slideEasing']		= array('Slide animation easing', 'Specify the slide easing effect (default: none).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_fadeSpeed']			= array('Fade animation speed', 'Specify the fade animation speed (default: 350 milliseconds).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_fadeEasing']		= array('Fade animation easing', 'Specify the fade easing effect (default: none).');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_crossfade']			= array('Crossfade', 'Select to enable slides crossfading.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_start']				= array('Start from slide', 'Specify the starting index (default: 1).');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_randomize']			= array('Randomize', 'Select to randomize slides.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_crossfade']			= array('Crossfade', 'Select to enable slides crossfading (works only with images).');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_start']				= array('Starting slide', 'Specify the starting slide index (default: 1).');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_randomize']			= array('Randomize', 'Select to randomize slides order.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_hoverPause']		= array('Pause on hover', 'Select to pause the animation on mousehover.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_bigTarget']			= array('Big Target', 'Select to make the whole slide link to next one on click.');
-$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeight']		= array('Auto-height', 'Select to auto adjust height.');
+$GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeight']		= array('Auto-height', 'Select to auto-adjust content height.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_autoHeightSpeed']	= array('Auto-height speed', 'Specify the auto-height animation time (default: 350 milliseconds).');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preload']			= array('Preload', 'Select to activate content preload.');
 $GLOBALS['TL_LANG']['tl_content']['ce_slider_jquery_preloadimage']		= array('Preloader image', 'Select a custom animated image to show on preload.');
@@ -93,6 +93,6 @@ $GLOBALS['TL_LANG']['MSC']['ce_slider_jquery_endElem']					= 'End';
  * Error Messages
  */
 
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Pagination auto-generation is already active.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Auto-generate pagination is already active.';
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS Slider ID already exists.';
 ?>
