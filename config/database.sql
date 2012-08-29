@@ -41,8 +41,6 @@ CREATE TABLE `tl_content` (
   `ce_slider_jquery_autoHeight` char(1) NOT NULL default '',
   `ce_slider_jquery_autoHeightSpeed` int(10) unsigned NOT NULL default '350',
   `ce_slider_jquery_bigTarget` char(1) NOT NULL default '',
-  `ce_slider_jquery_animationStart` varchar(255) NOT NULL default '',
-  `ce_slider_jquery_animationComplete` varchar(255) NOT NULL default '',
   `ce_slider_jquery_template_html` varchar(255) NOT NULL default '',
   `ce_slider_jquery_template_css` varchar(255) NOT NULL default '',
   `ce_slider_jquery_template_js` varchar(255) NOT NULL default '',

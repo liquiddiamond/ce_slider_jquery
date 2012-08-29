@@ -54,6 +54,12 @@ class CESliderJqueryEnd extends ContentElement
 {
 
 	/**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'ce_slider_jquery_html_default';
+
+	/**
 	 * Display a wildcard in the back end
 	 * @return public
 	 */
