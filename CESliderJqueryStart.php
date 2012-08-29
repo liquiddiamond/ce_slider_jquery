@@ -91,15 +91,15 @@ class CESliderJqueryStart extends ContentElement
         }
 
         /*  Import JS and CSS  */
-        $GLOBALS['TL_CSS']['ce_slider_jquery']                      = 'system/modules/ce_slider_jquery/html/ce_slider_jquery.css';
-        $GLOBALS['TL_MOOTOOLS']['ce_slider_jquery']                 = '<script src="system/modules/ce_slider_jquery/html/ce_slider_jquery.slides.min.js"></script>';
+        $GLOBALS['TL_CSS']['ce_slider_jquery']                      = 'system/modules/ce_slider_jquery/public/ce_slider_jquery.css';
+        $GLOBALS['TL_MOOTOOLS']['ce_slider_jquery']                 = '<script src="system/modules/ce_slider_jquery/public/ce_slider_jquery.slides.min.js"></script>';
         
         /* Add jQuery Easing Plugin if slide easing or fade easing have been set.
          * Script by George McGinley Smith  http://gsgd.co.uk/sandbox/jquery/easing/
          */
         if (strlen($this->ce_slider_jquery_slideEasing) || strlen($this->ce_slider_jquery_fadeEasing))
         {
-            $GLOBALS['TL_MOOTOOLS']['ce_slider_jquery_easing']      = '<script src="system/modules/ce_slider_jquery/html/ce_slider_jquery.easing.min.js"></script>';
+            $GLOBALS['TL_MOOTOOLS']['ce_slider_jquery_easing']      = '<script src="system/modules/ce_slider_jquery/public/ce_slider_jquery.easing.min.js"></script>';
         }
 
         /*  Create templates  */
@@ -221,7 +221,7 @@ class CESliderJqueryStart extends ContentElement
         }
         else
         {
-            $this->TemplateJS->PreloadImage     = TL_PATH.'/system/modules/ce_slider_jquery/html/img/loading.gif';
+            $this->TemplateJS->PreloadImage     = TL_PATH.'/system/modules/ce_slider_jquery/public/img/loading.gif';
         }
 
         /* Parse the JS template and add it after jquery */

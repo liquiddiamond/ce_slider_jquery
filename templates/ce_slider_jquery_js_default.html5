@@ -33,8 +33,8 @@
             next: '<?php echo $this->NextClass; ?>',
             prev: '<?php echo $this->PrevClass; ?>',
 <?php endif; ?>
-<?php if(!$this->Pagination): ?>
-            pagination: <?php echo (($this->Pagination) ? 'true' : 'false' ); ?>,
+<?php if($this->Pagination): ?>
+            pagination: true,
             generatePagination: <?php echo ($this->GeneratePagination) ? 'true' : 'false'; ?>,
             paginationClass: '<?php echo $this->PaginationClass; ?>',
             currentClass: '<?php echo $this->CurrentClass; ?>',
@@ -51,7 +51,7 @@
             pause: <?php echo $this->Pause; ?>,
             hoverPause: <?php echo (($this->HoverPause) ? 'true' : 'false' ); ?>,
 <?php if(!$this->AutoHeight): ?>
-            autoHeight: <?php echo (($this->AutoHeight) ? 'true' : 'false' ); ?>,
+            autoHeight: true,
             autoHeightSpeed: <?php echo (($this->AutoHeightSpeed) ? 'true' : 'false' ); ?>,
 <?php endif; ?>
             bigTarget: <?php echo (($this->BigTarget) ? 'true' : 'false' ); ?>
