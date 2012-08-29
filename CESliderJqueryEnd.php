@@ -90,32 +90,19 @@ class CESliderJqueryEnd extends ContentElement
 		
 		if ($objStartElem->numRows < 1)
 		{
-			$this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element'], 'ce_slider_jquery compile()', TL_ERROR);
-			return;
+			$this->addErrorMessage('The Content-Element ce_jquery_slider_start does not exist.');
+            $this->log('The Content-Element ce_jquery_slider_start does not exist.', 'ce_slider_jquery compile()', TL_ERROR);
+            return;
 		}
 
+
+		/* Check for nested start elements */
 		if ($objStartElem->numRows > 1)
 		{
-			$this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements'], 'ce_slider_jquery compile()', TL_ERROR);
-			return;
+			$this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+            $this->log('Module ce_slider_jquery does not support nested start or end elements.', 'ce_slider_jquery compile()', TL_ERROR);
+            return;
 		}
-		
-		/*  Create templates  */
-        /*if (($this->ce_slider_jquery_template_html != $this->strTemplate) && ($this->ce_slider_jquery_template_html != '')) 
-        {
-            $this->strTemplate          = $this->ce_slider_jquery_template_html;
-        }
-        $this->Template             	= new FrontendTemplate($this->strTemplate);
-		
-		$this->Template->Output   				= 'end';*/
-		
-		/*$this->Template->GenerateNextPrev		= $objStartElem->ce_slider_jquery_generateNextPrev;
-		$this->Template->NextClass				= $objStartElem->ce_slider_jquery_next;
-		$this->Template->PrevClass				= $objStartElem->ce_slider_jquery_prev;
-		$this->Template->Pagination				= $objStartElem->ce_slider_jquery_pagination;
-		$this->Template->GeneratePagination		= $objStartElem->ce_slider_jquery_generatePagination;
-		$this->Template->PaginationClass		= $objStartElem->ce_slider_jquery_paginationClass;
-		$this->Template->CurrentClass			= $objStartElem->ce_slider_jquery_currentClass;*/
 	}
 }
 

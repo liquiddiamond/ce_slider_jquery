@@ -136,15 +136,17 @@ class CESliderJqueryStart extends ContentElement
         $this->Template->CurrentClass           = $objStartElem->ce_slider_jquery_currentClass;
 
         /* Select jQuery slider end element */
-        $sliderEndElem      = $this->Database->prepare("SELECT sorting FROM tl_content WHERE pid=? AND invisible != 1 AND type=? ORDER by sorting DESC")
+        $sliderEndElem      = $this->Database->prepare("SELECT sorting FROM tl_content WHERE pid=? AND invisible != 1 AND type = ? ORDER by sorting DESC")
         ->limit(1)
         ->execute($this->pid, 'ce_slider_jquery_end');
 
         if ($sliderEndElem->numRows < 1)
         {
-            $this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_end_element'], 'ce_slider_jquery compile()', TL_ERROR);
+            $this->addErrorMessage('The Content-Element ce_jquery_slider_end does not exist.');
+            $this->log('The Content-Element ce_jquery_slider_end does not exist.', 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
+
 
         /* Select all elements inside the slider */
         $sliderElements     = $this->Database->prepare("SELECT id, type, ce_slider_jquery_pagination, cssID FROM tl_content WHERE pid = ? AND invisible != 1 AND sorting > ? AND sorting < ? ORDER by sorting ASC")
@@ -152,21 +154,22 @@ class CESliderJqueryStart extends ContentElement
 
         if ($sliderElements->numRows < 1)
         {
-            $this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_elements'], 'ce_slider_jquery compile()', TL_ERROR);
+            $this->addErrorMessage('CE Slider jQuery does not contain any Content Element');
+            $this->log('CE Slider jQuery does not contain any Content Element', 'ce_slider_jquery compile()', TL_ERROR);
             return;
         }
-        $arraySliderElem    = $sliderElements->fetchAllAssoc();
+
 
         /* Check for nested start elements */
-        /*while($sliderElements->next())
-        {
-            /*print_r($sliderElements->type);
-            die();
-            if ($sliderElements->type == 'ce_slider_jquery_start')) {
-                $this->log($GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements'], 'ce_slider_jquery compile()', TL_ERROR);
-                return;
-            }*/
-        /*}*/
+        $sliderNestedElements     = $this->Database->prepare("SELECT id FROM tl_content WHERE pid = ? AND type = ? AND invisible != 1 AND sorting > ? AND sorting < ? ORDER by sorting ASC")
+        ->execute($this->pid, 'ce_slider_jquery_start', $this->sorting, $sliderEndElem->sorting);
+
+        if ($sliderNestedElements->numRows > 0) {
+            $this->addErrorMessage('Module ce_slider_jquery does not support nested start or end elements.');
+            $this->log('Module ce_slider_jquery does not support nested start or end elements.', 'ce_slider_jquery compile()', TL_ERROR);
+            return;
+        }
+
 
         /* Populate the CSS template and add it to the <head> */
         $this->TemplateCSS->Width               = $arrce_slider_jquery_Size[0];

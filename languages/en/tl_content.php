@@ -95,6 +95,6 @@ $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_generatePaginationErr']	= 'Paginati
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_cssIDExists']				= 'CSS Slider ID already exists.';
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_start_element']			= 'The Content-Element ce_jquery_slider_start does not exist.';
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_end_element']			= 'The Content-Element ce_jquery_slider_end does not exist.';
-$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements']		= 'ce_jquery_slider does not support nested start or end elements.';
+$GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_nested_elements']		= 'Module ce_slider_jquery does not support nested start or end elements.';
 $GLOBALS['TL_LANG']['ERR']['ce_slider_jquery_no_elements']				= 'CE Slider jQuery does not contain any Content Element';
 ?>
